@@ -5,8 +5,8 @@ The SEGR scene text recognition algorithm proposed in this paper mining semantic
 pip install torch==1.7.1 torchvision==0.8.2 fastai==1.0.60 opencv-python tensorboardX lmdb pillow
 ```
 ## Datasets
-We used datasets in LMDB format for training and evaluation. Synthetic datasets MJSynth, SynthTex and WikiText were used in the training process, and three irregular text datasets and three regular text datasets were used in the evaluation process.\<br>
-*training datasets\<br>
+We used datasets in LMDB format for training and evaluation. Synthetic datasets MJSynth, SynthTex and WikiText were used in the training process, and three irregular text datasets and three regular text datasets were used in the evaluation process.<\br>
+*training datasets<\br>
   *MJSynth\<br>
   *SynthTex\<br>
   *WikiText\<br>
