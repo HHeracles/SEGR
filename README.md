@@ -7,18 +7,17 @@ pip install torch==1.7.1 torchvision==0.8.2 fastai==1.0.60 opencv-python tensorb
 ## Datasets
 We used datasets in LMDB format for training and evaluation. Synthetic datasets MJSynth, SynthTex and WikiText were used in the training process, and three irregular text datasets and three regular text datasets were used in the evaluation process.<br>
 *training datasets<br>
-
   *MJSynth<br>
   *SynthTex<br>
   *WikiText<br>
-*Evaluation datasets\<br>
-The evaluation data set can be downloaded from  BaiduNetdisk(passwd:1dbv or GoogleDrive.  It can also be downloaded from the corresponding official website. \<br>
-  *Regular scene text datasets\<br>
-    *ICDAR2013(IC13)\<br>
-    *Street View Text(SVT)\<br>
-    *IIIT5k(IIIT)\<br>
-  *Irregular scene text datasets\<br>
-    *ICDAR2015 (IC15)\<br>
-    *SVT Perspective(SVTP)\<br>
-    *CUTE80(CUTE)\<br>
-*The directory structure of the dataset is as follows:\<br>
+*Evaluation datasets<br>
+The evaluation data set can be downloaded from  BaiduNetdisk(passwd:1dbv or GoogleDrive.  It can also be downloaded from the corresponding official website. <br>
+  *Regular scene text datasets<br>
+    *ICDAR2013(IC13)<br>
+    *Street View Text(SVT)<br>
+    *IIIT5k(IIIT)<br>
+  *Irregular scene text datasets<br>
+    *ICDAR2015 (IC15)<br>
+    *SVT Perspective(SVTP)<br>
+    *CUTE80(CUTE)<br>
+*The directory structure of the dataset is as follows:<br>
