@@ -7,9 +7,9 @@ pip install torch==1.7.1 torchvision==0.8.2 fastai==1.0.60 opencv-python tensorb
 ## Datasets
 We used datasets in LMDB format for training and evaluation. Synthetic datasets MJSynth, SynthTex and WikiText were used in the training process, and three irregular text datasets and three regular text datasets were used in the evaluation process.<br>
 * training datasets<br>
-  * MJSynth<br>
-  * SynthTex<br>
-  * WikiText<br>
+  * [MJSynth(MJ)](https://www.robots.ox.ac.uk/~vgg/data/text/)<br>
+  * [SynthTex(ST)](https://www.robots.ox.ac.uk/~vgg/data/scenetext/)<br>
+  * [WikiText](https://s3.amazonaws.com/research.metamind.io/wikitext/wikitext-103-v1.zip)<br>
 * Evaluation datasets<br>
 The evaluation data set can be downloaded from  BaiduNetdisk(passwd:1dbv or GoogleDrive.  It can also be downloaded from the corresponding official website. <br>
   * Regular scene text datasets<br>
