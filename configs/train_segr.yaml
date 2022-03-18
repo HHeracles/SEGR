@@ -1,0 +1,99 @@
+global:
+  name: train-segr
+  phase: train
+  stage: train-super
+  workdir: output
+  seed: ~
+
+dataset:
+  train: {
+    roots: ['data/training/MJ/MJ_train/', 
+            'data/training/MJ/MJ_test/', 
+            'data/training/MJ/MJ_valid/', 
+            'data/training/ST', 
+            ],
+    batch_size: 384,
+    batch_size: 192,
+    batch_size: 448,
+    batch_size: 224,
+
+  }
+  test: {
+    roots: ['data/evaluation/IIIT5k_3000', 
+            'data/evaluation/SVT', 
+            'data/evaluation/SVTP',
+            'data/evaluation/IC13_857',
+            'data/evaluation/IC15_1811',
+            'data/evaluation/CUTE80',
+            ],
+    batch_size: 384,
+    batch_size: 448,
+    batch_size: 224,
+    #batch_size: 1,
+
+  }
+  data_aug: True
+  multiscales: False
+  num_workers: 14
+
+training:
+  epochs: 10
+  show_iters: 50
+  eval_iters: 3000
+  save_iters: 3000
+  #start_iters: 0
+  #epochs: 0
+  
+  #show_iters: 1
+  #eval_iters: 1
+  #save_iters: 1
+  #start_iters: 177000
+  #epochs: 4
+  
+optimizer:
+  type: Adam
+  true_wd: False
+  wd: 0.0
+  bn_wd: False
+  clip_grad: 20
+  lr: 0.0001
+  args: {
+    betas: !!python/tuple [0.9, 0.999], # for default Adam 
+  }
+  scheduler: {
+    periods: [6, 4],
+    periods: [1, 2,2,5],
+    periods: [1, 1,2,5],
+    periods: [4, 2,2,1,1],
+    periods: [6, 3,1], # 20220120
+    gamma: 0.1,
+  }
+
+model:
+  ########################################
+  ### The SEGR model of the paper      ###
+  ########################################
+  name: 'modules.model_segr_iter.SEGRModel'
+  checkpoint: output/train-segr/best-train-segr.pth
+
+  #['vision', 'language', 'alignment','grahpyReason']
+  eval: 'grahpyReason'
+
+  iter_size: 3
+  ensemble: ''
+  use_vision: False
+  vision: {
+    loss_weight: 1.,
+    attention: 'position',
+    backbone: 'transformer',
+    backbone_ln: 3,
+  }
+  language: {
+    num_layers: 4,
+    loss_weight: 1.,
+    detach: True,
+    use_self_attn: False
+  }
+  alignment: {
+    loss_weight: 1.,
+  }

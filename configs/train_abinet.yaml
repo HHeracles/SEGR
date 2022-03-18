@@ -1,0 +1,204 @@
+global:
+  name: train-abinet
+  phase: train
+  stage: train-super
+  workdir: workdir
+  seed: ~
+
+dataset:
+  train: {
+    roots: ['data/training/MJ/MJ_train/', 
+            'data/training/MJ/MJ_test/', 
+            'data/training/MJ/MJ_valid/', 
+            'data/training/ST', 
+
+            #'../../TextSpotter/datasets/svt1/lmdb/train/',
+            #'../../TextSpotter/datasets/icdar2013/lmdb/train/',
+            #'../../TextSpotter/datasets/icdar2015/lmdb/train/',
+            #'../../TextSpotter/datasets/IIIT5K/lmdb/train/',
+            ],
+    batch_size: 384,
+    batch_size: 192,
+    batch_size: 448,
+    batch_size: 224,
+
+  }
+  test: {
+    roots: ['data/evaluation/IIIT5k_3000', 
+            'data/evaluation/SVT', 
+            'data/evaluation/SVTP',
+            'data/evaluation/IC13_857',
+            'data/evaluation/IC15_1811',
+            'data/evaluation/CUTE80',
+            
+            #'../../TextSpotter/datasets/svt1/lmdb/test/',            
+            #'../../TextSpotter/datasets/icdar2013/lmdb/test/',
+            #'../../TextSpotter/datasets/icdar2015/lmdb/test/',
+            #'../../TextSpotter/datasets/IIIT5K/lmdb/test/',
+            ],
+    batch_size: 384,
+    batch_size: 448,
+    batch_size: 224,
+    #batch_size: 1,
+
+    
+  }
+  data_aug: True
+  multiscales: False
+  num_workers: 14
+
+training:
+  epochs: 10
+  show_iters: 50
+  eval_iters: 3000
+  save_iters: 3000
+  #start_iters: 0
+  #epochs: 0
+  
+  #show_iters: 1
+  #eval_iters: 1
+  #save_iters: 1
+  #start_iters: 177000
+  #epochs: 4
+  
+optimizer:
+  type: Adam
+  true_wd: False
+  wd: 0.0
+  bn_wd: False
+  clip_grad: 20
+  lr: 0.0001
+  #lr: 0.00001
+  #lr: 0.00000008
+  args: {
+    betas: !!python/tuple [0.9, 0.999], # for default Adam 
+  }
+  scheduler: {
+    periods: [6, 4],
+    periods: [1, 2,2,5],
+    periods: [1, 1,2,5],
+    periods: [4, 2,2,1,1],
+    periods: [6, 3,1], # 20220120
+    gamma: 0.1,
+  }
+
+model:
+  # original model
+  name: 'modules.model_abinet_iter.ABINetIterModel'
+
+  # B model
+  #name: 'modules.model_abinet_iter.ABINetVisionIterModel'
+  name: 'modules.model_abinet_iter.ABINetIterInstanceNorm1dModel'
+  #name: 'modules.model_abinet_iter.ABINetIterInstanceNorm1dAndConv1dModel'
+  #name: 'modules.model_abinet_iter.ABINetIterInstanceNorm1dAndConv1GateFusiondModel'
+  # C model
+  #name: 'modules.model_abinet_iter.ABINetVisionRecognitionIterModel'
+  #name: 'modules.model_abinet_iter.ABINetIterInstanceMemoryAndNorm1dGateFusiondModel'
+  name: 'modules.model_abinet_iter.ABINetFusionVisionAndLanguageIterModel'# text spotting  methond_1
+  
+  #20211015
+  #name: 'modules.model_abinet_iter.ABINetIterIgnoreMaskModel'# invalid(92.56)
+  #name: 'modules.model_abinet_iter.ABINetIterIgnoreSoftMapModel'# invalid(91.28)
+  
+  ########################################
+  ### The SE+GCN  or OnlyGCN model of first paper  ###
+  ########################################
+  name: 'modules.model_abinet_iter.ABINetIterGCNModel' # 92.93
+  #eval: 'grahpyReason'
+  #name: 'modules.model_abinet_iter.ABINetIterGCNScoreModel' # 92.97
+  #eval: 'voting'
+  #eval: 'grahpyReason'
+  #name: 'modules.model_abinet_iter.ABINetIterLinearPoolModel'# invaild
+  #name: 'modules.model_abinet_iter.ABINetIterMeshModel'# invalid
+  #name: 'modules.model_abinet_iter.ABINetBLSTMIterModel'# invalid
+  
+  ##########################################
+  #### The SE model of first paper   ###
+  ##########################################
+  #name: 'modules.model_abinet_iter.ABINetIterSEModel' # 93.07
+  #name: 'modules.model_abinet_iter.ABINetIterSEAndPAKVModel' 
+  #name: 'modules.model_abinet_iter.ABINetIterOnlySEKeyesModel' # invaild
+  #name: 'modules.model_abinet_iter.ABINetIterOnlySEValuesModel'#92.99
+  
+  # 20211028
+  #name: 'modules.model_abinet_iter.ABINetIterSEANDGCNModel'#SE+GCN
+  #name: 'modules.model_abinet_iter.ABINetSEGCNModel' # 
+  #eval: 'grahpyReason'
+  #name: 'modules.model_abinet_iter.ABINetIterSEANDINormalModel'
+  #name: 'modules.model_abinet_iter.ABINetIterSEAddINormalANDGCNModel'#9285
+  #eval: 'grahpyReason'
+  #name: 'modules.model_abinet_iter.ABINetIterSEMixtureModel' # # invaild
+  #name: 'modules.model_abinet_iter.ABINetIterInstanceNorm1dAndGCNModel'# invaild
+  #name: 'modules.model_abinet_iter.ABINetIterVisionAndSELanguageModel'#92.4 # text spotting methond _2
+  # 20211109
+  #name: 'modules.model_abinet_iter.ABINetIterPositionAndSEModel' # 
+  
+  #checkpoint: workdir/train-abinet/best-train-abinet(SEAddINormalANDGCN9285).pth
+  #checkpoint: workdir/train-abinet/best-train-abinet.pth
+  #checkpoint: workdir/train-abinet/best-train-abinet(SE9270).pth
+  
+  #The only SE checkpoint of first paper
+  #checkpoint: workdir/train-abinet/best-train-abinet(SE9307).pth
+  #checkpoint: workdir/train-abinet/best-train-abinet(SE9312).pth
+  #checkpoint: workdir/train-abinet/best-train-abinet(Norm1dAndConv1_cwr9289).pth
+  #checkpoint: workdir/train-abinet/best-train-abinet(Norm9273).pth
+  #checkpoint: workdir/train-abinet/train-abinet_1_42000.pth
+  #checkpoint: workdir/train-abinet/train-abinet_2_87000(fusion_925).pth
+  #checkpoint: workdir/train-abinet/best-train-abinet_fusionConv1d_9265.pth
+    
+  checkpoint: workdir/train-abinet/best-train-abinet_original.pth
+  #checkpoint: workdir/train-abinet/best-train-abinet_1008(memory256).pth
+  #checkpoint: workdir/train-abinet/train-abinet_1_42000.pth
+  #checkpoint: workdir/train-abinet/best-train-abinet_IgnoreMask(9216).pth
+  
+  #The onlyGCN checkpoint of first paper  corresponding model ABINetIterGCNModel ABINetIterGCNModel_1220
+  #checkpoint: workdir/train-abinet/best-train-abinet_gcnreason(929).pth
+  
+  #checkpoint: workdir/train-abinet/best-train-abinet(SEFusionGate92.65).pth # corresponse "ABINetIterSEModel"
+  #checkpoint: workdir/train-abinet/best-train-abinet(SEFusionGate92.79).pth # corresponse "ABINetIterSEModel" 92.80
+  #checkpoint: workdir/train-abinet/best-train-abinet(SEFusionGate92.92).pth # corresponse "ABINetIterSEModel" 92.92
+  
+  #The SE+GCN checkpoint of first paper
+  #checkpoint: workdir/train-abinet/train-abinet_4_177000(SEGCN=92.89).pth
+  #checkpoint: workdir/train-abinet/best-train-abinet(SEGCN_92.99_lr00001).pth
+  #checkpoint: workdir/train-abinet/best-train-abinet(SEGCN_93.09type4).pth
+  #checkpoint: workdir/train-abinet/best-train-abinet(SEGCN_93.087type4_2).pth
+  
+  #checkpoint: workdir/train-abinet/best-train-abinet(OnlyGCN=9287).pth
+  checkpoint: workdir/train-abinet/best-train-abinet.pth
+  
+  #default is alignment
+  eval: 'alignment'
+  
+
+  #['vision', 'language', 'alignment','grahpyReason','voting']
+  eval: 'grahpyReason'
+  #eval: 'voting'
+
+
+
+  #name: 'modules.model_abinet_iter.ABINetIterModel'
+  #checkpoint: workdir/train-abinet/best-train-abinet_original.pth
+  
+  iter_size: 3
+  ensemble: ''
+  use_vision: False
+  vision: {
+    #checkpoint: workdir/pretrain-vision-model/best-pretrain-vision-model.pth,
+    #checkpoint: workdir/pretrain-vision-model/best-pretrain-vision-model_original.pth,
+    loss_weight: 1.,
+    attention: 'position',
+    backbone: 'transformer',
+    backbone_ln: 3,
+  }
+  language: {
+    #checkpoint:  workdir/pretrain-language-model/pretrain-language-model.pth,
+    #checkpoint:  workdir/pretrain-language-model/pretrain-language-model_original.pth,
+    num_layers: 4,
+    loss_weight: 1.,
+    detach: True,
+    use_self_attn: False
+  }
+  alignment: {
+    loss_weight: 1.,
+  }

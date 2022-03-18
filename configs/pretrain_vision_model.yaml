@@ -1,0 +1,73 @@
+global:
+  name: pretrain-vision-model
+  phase: train
+  stage: pretrain-vision
+  workdir: workdir
+  seed: ~
+ 
+dataset:
+  train: {
+    roots: ['data/training/MJ/MJ_train/', 
+            'data/training/MJ/MJ_test/', 
+            'data/training/MJ/MJ_valid/', 
+            'data/training/ST'],
+    batch_size: 384,
+    batch_size: 1
+    
+  }
+  test: {
+    roots: ['data/evaluation/IIIT5k_3000', 
+            'data/evaluation/SVT', 
+            'data/evaluation/SVTP',
+            'data/evaluation/IC13_857',
+            'data/evaluation/IC15_1811',
+            'data/evaluation/CUTE80'
+            ],
+    batch_size: 384,
+    batch_size: 1
+  }
+  data_aug: True
+  multiscales: False
+  num_workers: 14
+
+training:
+  epochs: 8
+  show_iters: 50
+  eval_iters: 3000
+  save_iters: 3000
+  
+  show_iters: 1
+  eval_iters: 1
+  eval_iters: 1
+optimizer:
+  type: Adam
+  true_wd: False
+  wd: 0.0
+  bn_wd: False
+  clip_grad: 20
+  lr: 0.0001
+  #lr: 0.00001
+  args: {
+    betas: !!python/tuple [0.9, 0.999], # for default Adam 
+  }
+  scheduler: {
+    periods: [6, 2],
+    gamma: 0.1,
+  }
+
+model:
+  name: 'modules.model_vision.BaseVision'
+  #checkpoint: ~
+  checkpoint: workdir/pretrain-vision-model/best-pretrain-vision-model(91.0).pth
+  #checkpoint: workdir/pretrain-vision-model/pretrain-vision-model_4_180000.pth
+  #checkpoint: workdir/pretrain-vision-model/original_best-pretrain-vision-model.pth
+  checkpoint: workdir/pretrain-vision-model/best-pretrain-vision-model.pth
+  # 201110
+  name: 'modules.model_vision.BasePositionVision'
+  #checkpoint: workdir/train-abinet/best-train-abinet.pth
+  vision: {
+    loss_weight: 1.,
+    attention: 'position',
+    backbone: 'transformer',
+    backbone_ln: 3,
+  }
