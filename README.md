@@ -24,3 +24,24 @@ The evaluation data set can be downloaded from  BaiduNetdisk(passwd:1dbv or Goog
     * SVT Perspective(SVTP)<br>
     * CUTE80(CUTE)<br>
 * The directory structure of the dataset is as follows:<br>
+
+    ```
+    data
+    ├── charset_36.txt
+    ├── evaluation
+    │   ├── CUTE80
+    │   ├── IC13_857
+    │   ├── IC15_1811
+    │   ├── IIIT5k_3000
+    │   ├── SVT
+    │   └── SVTP
+    ├── training
+    │   ├── MJ
+    │   │   ├── MJ_test
+    │   │   ├── MJ_train
+    │   │   └── MJ_valid
+    │   └── ST
+    ├── WikiText-103.csv
+    └── WikiText-103_eval_d1.csv
+    ```
+
