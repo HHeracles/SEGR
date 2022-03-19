@@ -14,15 +14,15 @@ We used datasets in LMDB format for training and evaluation. Synthetic datasets 
   * [SynthTex(ST)](https://www.robots.ox.ac.uk/~vgg/data/scenetext/)<br>
   * [WikiText](https://s3.amazonaws.com/research.metamind.io/wikitext/wikitext-103-v1.zip)<br>
 * Evaluation datasets<br>
-The evaluation data set can be downloaded from  BaiduNetdisk(passwd:1dbv or GoogleDrive.  It can also be downloaded from the corresponding official website. <br>
+The evaluation data set can be downloaded from [GoogleDrive](https://drive.google.com/file/d/1mYM_26qHUom_5NU7iutHneB_KHlLjL5y/view?usp=sharing). It can also be downloaded from the corresponding official website. <br>
   * Regular scene text datasets<br>
-    * ICDAR2013(IC13)<br>
-    * Street View Text(SVT)<br>
-    * IIIT5k(IIIT)<br>
+    * [ICDAR2013(IC13)(passwd:3c3e)](https://pan.baidu.com/s/1KwKt63R1NQR42MuckUs7kg?pwd=3c3e)<br>
+    * [Street View Text(SVT)(passwd:mv7r)](https://pan.baidu.com/s/1_SwRxc_KX7boC_F6qcrUXw?pwd=mv7r)<br>
+    * [IIIT5k(IIIT)(passwd:kq88)](https://pan.baidu.com/s/1_JKzCDpRUTwlV0aEd12oxQ?pwd=kq88)<br>
   * Irregular scene text datasets<br>
-    * ICDAR2015 (IC15)<br>
-    * SVT Perspective(SVTP)<br>
-    * CUTE80(CUTE)<br>
+    * [ICDAR2015 (IC15)(passwd:1vfw)](https://pan.baidu.com/s/1Ss3icBNdIDQs-O7fs4m2hw?pwd=1vfw)<br>
+    * [SVT Perspective(SVTP)(passwd:j2ck)](https://pan.baidu.com/s/1oww4-fXXl1AHzl1tH2TD5A?pwd=j2ck)<br>
+    * [CUTE80(CUTE)(passwd:m0kt)](https://pan.baidu.com/s/1WSmqywc31RC7qmAFqAzzyQ?pwd=m0kt)<br>
 * The directory structure of the dataset is as follows:<br>
 
     ```
