@@ -45,4 +45,10 @@ The evaluation data set can be downloaded from [GoogleDrive](https://drive.googl
     └── WikiText-103_eval_d1.csv
     ```
 ## Models
+The SEGR pretrained model provided by us is on [BaiduNetdisk(passwd:ph33)](https://pan.baidu.com/s/1193tym9Mc2TpSOeTHomdcg?pwd=ph33), you can download it by yourself. The performance of the pretrained model on the evaluation datasets are shown in the following table:
+
+|Model|IC13|SVT|IIIT|IC15|SVTP|CUTE|
+|-|-|-|-|-|-|-|
+|SEGR|97.7|94.1|96.4|86.0|90.1|92.7
+
 
