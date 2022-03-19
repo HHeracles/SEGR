@@ -51,4 +51,26 @@ The SEGR pretrained model provided by us is on [BaiduNetdisk(passwd:ph33)](https
 |-|-|-|-|-|-|-|
 |SEGR|97.7|94.1|96.4|86.0|90.1|92.7
 
+## Training
+
+If you want to train the model, you can use the following command:
+
+```
+CUDA_VISIBLE_DEVICES=0, 1 python main.py --config=configs/train_segr.yaml
+```
+
+## Evaluation
+
+If you want to evaluate the model, you can use the following command:
+
+```
+CUDA_VISIBLE_DEVICES=0, 1 python main.py --config=configs/train_segr.yaml --phase test --image_only
+```
+
+## Acknowledgements
+
+This PyTorch implementation is based on ABINet.
+
+
+
 
