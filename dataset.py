@@ -10,7 +10,6 @@ from torchvision import transforms
 from transforms import CVColorJitter, CVDeterioration, CVGeometry
 from utils import CharsetMapper, onehot
 
-
 class ImageDataset(Dataset):
     "`ImageDataset` read data from LMDB database."
 
