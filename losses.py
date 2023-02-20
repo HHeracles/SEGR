@@ -2,7 +2,6 @@ from fastai.vision import *
 
 from modules.model import Model
 
-
 class MultiLosses(nn.Module):
     def __init__(self, one_hot=True):
         super().__init__()
