@@ -8,7 +8,6 @@ from PIL import Image
 from torchvision import transforms
 from torchvision.transforms import Compose
 
-
 def sample_asym(magnitude, size=None):
     return np.random.beta(1, 4, size) * magnitude
 
