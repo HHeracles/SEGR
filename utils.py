@@ -186,7 +186,6 @@ class Logger(object):
             raise Exception('Invoke Logger.init() first!')
         Logger._root.removeHandler(Logger._handle)
 
-
 class Config(object):
 
     def __init__(self, config_path, host=True):
