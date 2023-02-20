@@ -32,7 +32,7 @@ class IterationCallback(LearnerTensorboardWriter):
         self.metrics_root = 'metrics/'  # rewrite
         self.timer = Timer()
         self.host = self.learn.rank is None or self.learn.rank == 0
-
+        
     def _write_metrics(self, iteration:int, names:List[str], last_metrics:MetricsList)->None:
         "Writes training metrics to Tensorboard."
         for i, name in enumerate(names):
