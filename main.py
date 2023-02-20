@@ -14,8 +14,6 @@ from dataset import ImageDataset, TextDataset
 from losses import MultiLosses
 from utils import Config, Logger, MyDataParallel, MyConcatDataset
 
-
-
 def _set_random_seed(seed):
     if seed is not None:
         random.seed(seed)
