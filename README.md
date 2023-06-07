@@ -1,7 +1,7 @@
 # SEGR:Semantic Enhancement and Graph Reasoning for Irregular Scene Text Recognition
 cene text recognition is an important research field focused on visual understanding, which involves cross-modal processing of visual and text semantic information. Accurately recognizing irregular scene text, which has problems such as low resolution, blurriness, deformation, uneven illumination, and so on, is a common challenge for existing scene text recognition methods. In this paper, we proposed a novel scene text recognition method based on text semantic enhancement and characters graph reasoning (SEGR) to improve the accuracy of irregular text recognition. Specifically, SEGR consists of a visual recognition branch that performs preliminary recognition based on visual features and an iterative correction branch that performs the correction of the preliminary recognition by mining semantic information and relationships between characters. The iteration correction branch consists of a text semantic enhancement module based on transformer and a relational reasoning module based on characters graph.
 
-![framework](./figs/framework.png)
+![framework](./figs/frame.png)
 
 ## Requirements
 ```
